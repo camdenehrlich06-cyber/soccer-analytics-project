@@ -84,20 +84,30 @@ def _check_impact_rating_preconditions(goals, assists, tackles_won, minutes_play
         raise ValueError(f"position must be one of [{valid}] (got {position!r}).")
 
 
-def rate_player_stat(stat):
-    """Convenience wrapper: calculates the impact rating for a PlayerMatchStat.
+def add_impact_rating_column(df):
+    """Adds an 'impact_rating' column to a match-stats DataFrame.
+
+    Applies calculate_impact_rating() row by row so the exact same,
+    already-validated formula used elsewhere in this project is reused
+    here rather than reimplemented in pandas-specific vector math.
 
     Parameters:
-        stat (PlayerMatchStat): A single player's stat line for one match.
+        df (pandas.DataFrame): Must contain goals, assists, tackles_won,
+            minutes_played, saves, and position columns.
 
     Returns:
-        float: The player's impact rating for that match.
+        pandas.DataFrame: A copy of df with an added 'impact_rating' column.
     """
-    return calculate_impact_rating(
-        goals=stat.goals,
-        assists=stat.assists,
-        tackles_won=stat.tackles_won,
-        minutes_played=stat.minutes_played,
-        saves=stat.saves,
-        position=stat.position,
+    df = df.copy()
+    df["impact_rating"] = df.apply(
+        lambda row: calculate_impact_rating(
+            goals=row["goals"],
+            assists=row["assists"],
+            tackles_won=row["tackles_won"],
+            minutes_played=row["minutes_played"],
+            saves=row["saves"],
+            position=row["position"],
+        ),
+        axis=1,
     )
+    return df

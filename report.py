@@ -1,118 +1,84 @@
-"""Builds and prints post-match, season, and leaderboard reports.
+"""Builds reports and charts from a rated match-stats DataFrame.
 
-This module has one job: turn a list of PlayerMatchStat + rating pairs
-into a readable report. It does not load data or calculate ratings itself.
+This module has one job: summarize and visualize data that already has
+an 'impact_rating' column. It does not load data or calculate ratings.
 """
 
-from ratings import rate_player_stat
+import matplotlib
+matplotlib.use("Agg")  # render to file, no GUI window needed
+import matplotlib.pyplot as plt
 
 
-def filter_by_match(stats, match_id):
-    """Returns only the stat lines belonging to a given match.
+def match_leaderboard(df, match_id):
+    """Returns a match's players ranked by impact rating, highest first.
 
     Parameters:
-        stats (list[PlayerMatchStat]): All loaded stat lines.
+        df (pandas.DataFrame): Rated match-stats data.
         match_id (int): The match to filter for. Must be a positive integer.
 
     Returns:
-        list[PlayerMatchStat]: Stat lines for that match only.
+        pandas.DataFrame: Rows for that match, sorted by impact_rating descending.
 
     Raises:
         ValueError: If match_id is not a positive integer.
     """
     if match_id <= 0:
         raise ValueError(f"match_id must be positive (got {match_id}).")
-    return [s for s in stats if s.match_id == match_id]
+    match_df = df[df["match_id"] == match_id]
+    return match_df.sort_values("impact_rating", ascending=False)
 
 
-def filter_by_team(stats, team_name):
-    """Returns only the stat lines belonging to a given team, across all matches.
+def team_average_rating_by_position(df, team_name):
+    """Averages impact rating by position for a given team, across all matches.
 
     Parameters:
-        stats (list[PlayerMatchStat]): All loaded stat lines.
+        df (pandas.DataFrame): Rated match-stats data.
         team_name (str): The team to filter for. Must be non-empty.
 
     Returns:
-        list[PlayerMatchStat]: Stat lines for that team only.
+        pandas.Series: Average impact_rating indexed by position.
 
     Raises:
         ValueError: If team_name is empty.
     """
     if not team_name:
         raise ValueError("team_name cannot be empty.")
-    return [s for s in stats if s.team == team_name]
+    team_df = df[df["team"] == team_name]
+    return team_df.groupby("position")["impact_rating"].mean().sort_values(ascending=False)
 
 
-def rank_by_rating(stats, descending=True):
-    """Sorts stat lines into a leaderboard by impact rating.
-
-    Uses a custom sort key (the calculated rating) rather than sorting
-    by any field that already exists on the record.
+def plot_top_performers(df, team_name, top_n, output_path):
+    """Saves a bar chart of a team's top-N players by average impact rating.
 
     Parameters:
-        stats (list[PlayerMatchStat]): The stat lines to rank.
-        descending (bool): Highest rating first when True (the default).
+        df (pandas.DataFrame): Rated match-stats data.
+        team_name (str): The team to chart. Must be non-empty.
+        top_n (int): How many players to show. Must be a positive integer.
+        output_path (str): Where to save the chart image.
 
-    Returns:
-        list[PlayerMatchStat]: The same stat lines, sorted by rating.
+    Raises:
+        ValueError: If team_name is empty or top_n is not positive.
     """
-    return sorted(stats, key=rate_player_stat, reverse=descending)
+    if not team_name:
+        raise ValueError("team_name cannot be empty.")
+    if top_n <= 0:
+        raise ValueError(f"top_n must be positive (got {top_n}).")
 
+    team_df = df[df["team"] == team_name]
+    avg_by_player = (
+        team_df.groupby("player_name")["impact_rating"]
+        .mean()
+        .sort_values(ascending=False)
+        .head(top_n)
+    )
 
-def rank_by_goal_contributions(stats):
-    """Sorts stat lines by goals first, using assists to break ties.
-
-    Demonstrates a custom key built from more than one field: Python's
-    sort is stable, but a tuple key lets us express "goals, then assists"
-    directly instead of relying on sort stability.
-
-    Parameters:
-        stats (list[PlayerMatchStat]): The stat lines to rank.
-
-    Returns:
-        list[PlayerMatchStat]: The same stat lines, sorted by (goals, assists) descending.
-    """
-    return sorted(stats, key=lambda s: (s.goals, s.assists), reverse=True)
-
-
-def build_report_lines(stats, title):
-    """Builds the text lines of a report for a given set of stat lines.
-
-    The stat lines are reported in the order given, so callers who want a
-    leaderboard should sort (e.g. with rank_by_rating) before calling this.
-
-    Parameters:
-        stats (list[PlayerMatchStat]): The stat lines to report on.
-        title (str): A heading for the report.
-
-    Returns:
-        list[str]: The report, one line per entry, ready to print or save.
-    """
-    lines = [f"=== {title} ==="]
-    for rank, stat in enumerate(stats, start=1):
-        rating = rate_player_stat(stat)
-        lines.append(
-            f"{rank:>2}. {stat.player_name:<20} {stat.position:<3} {stat.team:<15} "
-            f"G:{stat.goals} A:{stat.assists} T:{stat.tackles_won} "
-            f"S:{stat.saves} Min:{stat.minutes_played:<3} -> Rating: {rating}"
-        )
-    return lines
-
-
-def print_report(stats, title):
-    """Prints a report for the given stat lines directly to the screen."""
-    for line in build_report_lines(stats, title):
-        print(line)
-
-
-def save_report(stats, title, filepath):
-    """Writes a report for the given stat lines out to a text file.
-
-    Parameters:
-        stats (list[PlayerMatchStat]): The stat lines to report on.
-        title (str): A heading for the report.
-        filepath (str): Where to save the report.
-    """
-    lines = build_report_lines(stats, title)
-    with open(filepath, "w") as out_file:
-        out_file.write("\n".join(lines) + "\n")
+    avg_by_player.plot(
+        kind="bar",
+        title=f"{team_name}: Top {top_n} Players by Avg. Impact Rating",
+        ylabel="Avg. Impact Rating (0-10)",
+        xlabel="Player",
+        legend=False,
+    )
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
