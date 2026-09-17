@@ -1,29 +1,68 @@
-"""Handles reading the raw match-stats CSV into a pandas DataFrame.
+"""Handles reading the raw match-stats CSV and turning it into structured data.
 
 This module has one job: get the data out of the CSV file and into a
-DataFrame with the right column types. It does not calculate ratings
-or print reports.
+usable, well-typed shape. It does not calculate ratings or print reports.
 """
 
-import pandas as pd
+import csv
+from dataclasses import dataclass
 
-INT_COLUMNS = [
-    "match_id", "minutes_played", "goals", "assists",
-    "tackles_won", "saves", "passes_completed", "shots_on_target", "yellow_cards",
-]
+
+@dataclass
+class PlayerMatchStat:
+    """A single player's stat line from a single match."""
+    match_id: int
+    match_date: str
+    team: str
+    opponent: str
+    venue: str
+    result: str
+    player_name: str
+    position: str
+    minutes_played: int
+    goals: int
+    assists: int
+    tackles_won: int
+    saves: int
+    passes_completed: int
+    shots_on_target: int
+    yellow_cards: int
 
 
 def load_match_stats(filepath):
-    """Reads the match-stats CSV file into a pandas DataFrame.
+    """Reads the match-stats CSV file into a list of PlayerMatchStat records.
 
     Parameters:
         filepath (str): Path to the soccer_match_stats.csv file.
 
     Returns:
-        pandas.DataFrame: One row per player-match stat line, with
-            match_date parsed as a datetime and numeric columns cast to int.
+        list[PlayerMatchStat]: One record per player-match row in the file.
     """
-    df = pd.read_csv(filepath)
-    df["match_date"] = pd.to_datetime(df["match_date"])
-    df[INT_COLUMNS] = df[INT_COLUMNS].astype(int)
-    return df
+    records = []
+    with open(filepath, newline="") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            records.append(_row_to_record(row))
+    return records
+
+
+def _row_to_record(row):
+    """Converts a single raw CSV row (dict of strings) into a PlayerMatchStat."""
+    return PlayerMatchStat(
+        match_id=int(row["match_id"]),
+        match_date=row["match_date"],
+        team=row["team"],
+        opponent=row["opponent"],
+        venue=row["venue"],
+        result=row["result"],
+        player_name=row["player_name"],
+        position=row["position"],
+        minutes_played=int(row["minutes_played"]),
+        goals=int(row["goals"]),
+        assists=int(row["assists"]),
+        tackles_won=int(row["tackles_won"]),
+        saves=int(row["saves"]),
+        passes_completed=int(row["passes_completed"]),
+        shots_on_target=int(row["shots_on_target"]),
+        yellow_cards=int(row["yellow_cards"]),
+    )

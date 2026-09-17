@@ -1,53 +1,84 @@
-"""Builds reports and charts from a rated match-stats DataFrame.
+"""Builds reports and charts from a list of rated PlayerMatchStat records.
 
-This module has one job: summarize and visualize data that already has
-an 'impact_rating' column. It does not load data or calculate ratings.
+This module has one job: summarize and visualize the stat data. It does
+not load data or calculate ratings itself.
 """
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+from ratings import rate_player_stat
 
-def match_leaderboard(df, match_id):
-    """Returns a match's players ranked by impact rating, highest first.
+
+def filter_by_match(stats, match_id):
+    """Returns only the stat lines belonging to a given match.
 
     Raises:
         ValueError: If match_id is not a positive integer.
     """
     if match_id <= 0:
         raise ValueError(f"match_id must be positive (got {match_id}).")
-    match_df = df[df["match_id"] == match_id]
-    return match_df.sort_values("impact_rating", ascending=False)
+    return [s for s in stats if s.match_id == match_id]
 
 
-def team_average_rating_by_position(df, team_name):
-    """Averages impact rating by position for a given team, across all matches.
+def filter_by_team(stats, team_name):
+    """Returns only the stat lines belonging to a given team, across all matches.
 
     Raises:
         ValueError: If team_name is empty.
     """
     if not team_name:
         raise ValueError("team_name cannot be empty.")
-    team_df = df[df["team"] == team_name]
-    return team_df.groupby("position")["impact_rating"].mean().sort_values(ascending=False)
+    return [s for s in stats if s.team == team_name]
 
 
-def player_form(df, player_name, window=3):
-    """Tracks a player's rolling average impact rating over their last N matches.
+def rank_by_rating(stats, descending=True):
+    """Sorts stat lines into a leaderboard by impact rating (custom key)."""
+    return sorted(stats, key=rate_player_stat, reverse=descending)
 
-    This answers "who is trending up or down right now?" rather than just
-    "who has the best season average?" -- a player can have a strong overall
-    average while their most recent matches are declining, or vice versa.
+
+def rank_by_goal_contributions(stats):
+    """Sorts stat lines by goals first, using assists to break ties."""
+    return sorted(stats, key=lambda s: (s.goals, s.assists), reverse=True)
+
+
+def team_average_rating_by_position(stats, team_name):
+    """Averages impact rating by position for a given team, across all matches.
 
     Parameters:
-        df (pandas.DataFrame): Rated match-stats data.
+        stats (list[PlayerMatchStat]): All loaded stat lines.
+        team_name (str): The team to filter for. Must be non-empty.
+
+    Returns:
+        dict[str, float]: Average impact rating per position, sorted highest first.
+
+    Raises:
+        ValueError: If team_name is empty.
+    """
+    if not team_name:
+        raise ValueError("team_name cannot be empty.")
+    team_stats = filter_by_team(stats, team_name)
+
+    totals = {}
+    for stat in team_stats:
+        totals.setdefault(stat.position, []).append(rate_player_stat(stat))
+
+    averages = {pos: round(sum(ratings) / len(ratings), 2) for pos, ratings in totals.items()}
+    return dict(sorted(averages.items(), key=lambda item: item[1], reverse=True))
+
+
+def player_form(stats, player_name, window=3):
+    """Tracks a player's rolling average impact rating over their last N matches.
+
+    Parameters:
+        stats (list[PlayerMatchStat]): All loaded stat lines.
         player_name (str): The player to track. Must be non-empty.
         window (int): Number of most recent matches to average. Must be positive.
 
     Returns:
-        pandas.DataFrame: That player's matches in date order, with a
-            'form_rating' column showing the rolling average.
+        list[tuple]: (match_date, opponent, impact_rating, form_rating) per match,
+            in date order.
 
     Raises:
         ValueError: If player_name is empty or window is not positive.
@@ -57,53 +88,112 @@ def player_form(df, player_name, window=3):
     if window <= 0:
         raise ValueError(f"window must be positive (got {window}).")
 
-    player_df = df[df["player_name"] == player_name].sort_values("match_date").copy()
-    player_df["form_rating"] = player_df["impact_rating"].rolling(window, min_periods=1).mean().round(2)
-    return player_df[["match_date", "opponent", "impact_rating", "form_rating"]]
+    player_stats = sorted(
+        [s for s in stats if s.player_name == player_name],
+        key=lambda s: s.match_date,
+    )
+
+    results = []
+    recent_ratings = []
+    for stat in player_stats:
+        rating = rate_player_stat(stat)
+        recent_ratings.append(rating)
+        if len(recent_ratings) > window:
+            recent_ratings.pop(0)
+        form_rating = round(sum(recent_ratings) / len(recent_ratings), 2)
+        results.append((stat.match_date, stat.opponent, rating, form_rating))
+    return results
 
 
-def home_away_split(df, team_name):
+def home_away_split(stats, team_name):
     """Compares a team's average impact rating at home vs. away.
 
     Parameters:
-        df (pandas.DataFrame): Rated match-stats data.
+        stats (list[PlayerMatchStat]): All loaded stat lines.
         team_name (str): The team to compare. Must be non-empty.
 
     Returns:
-        pandas.Series: Average impact_rating indexed by venue ('Home'/'Away').
+        dict[str, float]: Average impact rating keyed by 'Home' / 'Away'.
 
     Raises:
         ValueError: If team_name is empty.
     """
     if not team_name:
         raise ValueError("team_name cannot be empty.")
-    team_df = df[df["team"] == team_name]
-    return team_df.groupby("venue")["impact_rating"].mean().round(2)
+    team_stats = filter_by_team(stats, team_name)
+
+    totals = {"Home": [], "Away": []}
+    for stat in team_stats:
+        totals[stat.venue].append(rate_player_stat(stat))
+
+    return {venue: round(sum(ratings) / len(ratings), 2) for venue, ratings in totals.items() if ratings}
 
 
-def stat_correlations_with_rating(df, stat_columns):
+def _pearson_correlation(xs, ys):
+    """Computes the Pearson correlation coefficient between two equal-length lists."""
+    n = len(xs)
+    mean_x = sum(xs) / n
+    mean_y = sum(ys) / n
+    numerator = sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys))
+    denom_x = sum((x - mean_x) ** 2 for x in xs) ** 0.5
+    denom_y = sum((y - mean_y) ** 2 for y in ys) ** 0.5
+    if denom_x == 0 or denom_y == 0:
+        return 0.0
+    return numerator / (denom_x * denom_y)
+
+
+def stat_correlations_with_rating(stats, stat_names):
     """Checks how strongly each given stat correlates with impact rating.
 
-    Useful for sanity-checking the rating formula itself: if a stat that
-    should matter (e.g. goals) shows near-zero correlation, that's worth
-    investigating before trusting the rating.
-
     Parameters:
-        df (pandas.DataFrame): Rated match-stats data.
-        stat_columns (list[str]): Column names to correlate against impact_rating.
+        stats (list[PlayerMatchStat]): All loaded stat lines.
+        stat_names (list[str]): Attribute names on PlayerMatchStat to check
+            (e.g. "goals", "tackles_won").
 
     Returns:
-        pandas.Series: Correlation coefficient per stat, sorted descending.
+        list[tuple]: (stat_name, correlation) pairs, sorted highest first.
 
     Raises:
-        ValueError: If stat_columns is empty.
+        ValueError: If stat_names is empty.
     """
-    if not stat_columns:
-        raise ValueError("stat_columns cannot be empty.")
-    return df[stat_columns + ["impact_rating"]].corr()["impact_rating"].drop("impact_rating").sort_values(ascending=False)
+    if not stat_names:
+        raise ValueError("stat_names cannot be empty.")
+
+    ratings = [rate_player_stat(s) for s in stats]
+    results = []
+    for name in stat_names:
+        values = [getattr(s, name) for s in stats]
+        results.append((name, round(_pearson_correlation(values, ratings), 3)))
+    return sorted(results, key=lambda item: item[1], reverse=True)
 
 
-def plot_top_performers(df, team_name, top_n, output_path):
+def build_report_lines(stats, title):
+    """Builds the text lines of a report for a given set of stat lines."""
+    lines = [f"=== {title} ==="]
+    for rank, stat in enumerate(stats, start=1):
+        rating = rate_player_stat(stat)
+        lines.append(
+            f"{rank:>2}. {stat.player_name:<20} {stat.position:<3} {stat.team:<15} "
+            f"G:{stat.goals} A:{stat.assists} T:{stat.tackles_won} "
+            f"S:{stat.saves} Min:{stat.minutes_played:<3} -> Rating: {rating}"
+        )
+    return lines
+
+
+def print_report(stats, title):
+    """Prints a report for the given stat lines directly to the screen."""
+    for line in build_report_lines(stats, title):
+        print(line)
+
+
+def save_report(stats, title, filepath):
+    """Writes a report for the given stat lines out to a text file."""
+    lines = build_report_lines(stats, title)
+    with open(filepath, "w") as out_file:
+        out_file.write("\n".join(lines) + "\n")
+
+
+def plot_top_performers(stats, team_name, top_n, output_path):
     """Saves a bar chart of a team's top-N players by average impact rating.
 
     Raises:
@@ -114,28 +204,29 @@ def plot_top_performers(df, team_name, top_n, output_path):
     if top_n <= 0:
         raise ValueError(f"top_n must be positive (got {top_n}).")
 
-    team_df = df[df["team"] == team_name]
-    avg_by_player = (
-        team_df.groupby("player_name")["impact_rating"].mean()
-        .sort_values(ascending=False).head(top_n)
-    )
-    avg_by_player.plot(
-        kind="bar", title=f"{team_name}: Top {top_n} Players by Avg. Impact Rating",
-        ylabel="Avg. Impact Rating (0-10)", xlabel="Player", legend=False,
-    )
+    team_stats = filter_by_team(stats, team_name)
+    totals = {}
+    for stat in team_stats:
+        totals.setdefault(stat.player_name, []).append(rate_player_stat(stat))
+    averages = {name: sum(r) / len(r) for name, r in totals.items()}
+    top_players = sorted(averages.items(), key=lambda item: item[1], reverse=True)[:top_n]
+
+    names = [p[0] for p in top_players]
+    values = [p[1] for p in top_players]
+
+    plt.figure()
+    plt.bar(names, values)
+    plt.title(f"{team_name}: Top {top_n} Players by Avg. Impact Rating")
+    plt.ylabel("Avg. Impact Rating (0-10)")
+    plt.xlabel("Player")
+    plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
 
 
-def plot_player_form(df, player_name, window, output_path):
+def plot_player_form(stats, player_name, window, output_path):
     """Saves a line chart of a player's rating and rolling form over time.
-
-    Parameters:
-        df (pandas.DataFrame): Rated match-stats data.
-        player_name (str): The player to chart. Must be non-empty.
-        window (int): Rolling window size for the form line.
-        output_path (str): Where to save the chart image.
 
     Raises:
         ValueError: If player_name is empty.
@@ -143,12 +234,19 @@ def plot_player_form(df, player_name, window, output_path):
     if not player_name:
         raise ValueError("player_name cannot be empty.")
 
-    form_df = player_form(df, player_name, window).set_index("match_date")
-    form_df[["impact_rating", "form_rating"]].plot(
-        kind="line", marker="o",
-        title=f"{player_name}: Impact Rating vs. {window}-Match Form",
-        ylabel="Impact Rating (0-10)", xlabel="Match Date",
-    )
+    form_data = player_form(stats, player_name, window)
+    dates = [row[0] for row in form_data]
+    ratings = [row[2] for row in form_data]
+    form_ratings = [row[3] for row in form_data]
+
+    plt.figure()
+    plt.plot(dates, ratings, marker="o", label="Impact Rating")
+    plt.plot(dates, form_ratings, marker="o", label=f"{window}-Match Form")
+    plt.title(f"{player_name}: Impact Rating vs. {window}-Match Form")
+    plt.ylabel("Impact Rating (0-10)")
+    plt.xlabel("Match Date")
+    plt.xticks(rotation=45, ha="right")
+    plt.legend()
     plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
