@@ -1,67 +1,177 @@
-match_id,match_date,team,opponent,result,player_name,position,minutes_played,goals,assists,tackles_won,saves,passes_completed,shots_on_target,yellow_cards
-1,2026-07-05,Charlotte FC,Atlanta United,W,Kristijan Kahlina,GK,60,0,0,0,6,29,0,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Adilson Malanda,DF,75,1,0,1,0,30,1,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Andrew Privett,DF,90,0,0,1,0,47,0,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Nathan Byrne,DF,90,0,1,4,0,37,1,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Tim Ream,DF,90,0,0,1,0,54,0,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Ashley Westwood,MF,90,0,0,1,0,53,1,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Brandt Bronico,MF,90,0,0,2,0,62,2,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Pep Biel,MF,75,1,0,4,0,47,2,1
-1,2026-07-05,Charlotte FC,Atlanta United,W,Idan Toklomati,MF,90,0,0,4,0,63,2,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Wilfried Zaha,FW,65,0,0,1,0,17,0,0
-1,2026-07-05,Charlotte FC,Atlanta United,W,Patrick Agyemang,FW,90,0,0,1,0,35,1,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Brad Guzan,GK,90,0,0,0,6,28,0,1
-1,2026-07-05,Atlanta United,Charlotte FC,L,Brooks Lennon,DF,90,0,0,5,0,53,0,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Derrick Williams,DF,90,0,0,6,0,52,2,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Stian Gregersen,DF,90,0,0,1,0,37,0,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Julian Gressel,DF,90,1,0,1,0,36,3,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Bartosz Slisz,MF,90,0,0,3,0,65,2,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Amar Sejdic,MF,90,0,0,1,0,75,2,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Emerson Hyndman,MF,90,0,0,4,0,65,1,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Saba Lobjanidze,MF,90,0,0,4,0,71,0,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Xande Silva,FW,90,0,0,0,0,35,0,0
-1,2026-07-05,Atlanta United,Charlotte FC,L,Giorgos Giakoumakis,FW,90,0,0,0,0,27,1,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Drake Callender,GK,90,0,0,0,7,18,0,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,DeAndre Yedlin,DF,80,0,0,3,0,54,2,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Ian Fray,DF,90,0,0,2,0,44,0,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Jordi Alba,DF,90,0,0,3,0,46,0,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Noah Allen,DF,70,0,0,6,0,46,2,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Federico Redondo,MF,90,1,0,1,0,74,3,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Yannick Bright,MF,90,0,0,3,0,41,0,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Diego Gomez,MF,90,0,0,2,0,55,0,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Julian Gressel2,MF,90,0,0,0,0,45,2,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Leonardo Campana,FW,80,0,0,0,0,19,2,0
-2,2026-07-12,Inter Miami,Charlotte FC,D,Luis Suarez,FW,90,0,0,1,0,31,2,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Kristijan Kahlina,GK,90,0,0,0,6,28,0,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Adilson Malanda,DF,90,0,0,4,0,33,0,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Andrew Privett,DF,90,0,0,5,0,47,0,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Nathan Byrne,DF,60,1,0,2,0,32,1,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Tim Ream,DF,65,0,0,3,0,51,1,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Ashley Westwood,MF,80,0,0,4,0,70,0,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Brandt Bronico,MF,90,0,0,1,0,46,0,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Pep Biel,MF,90,0,0,3,0,69,2,1
-2,2026-07-12,Charlotte FC,Inter Miami,D,Idan Toklomati,MF,90,0,1,0,0,43,1,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Wilfried Zaha,FW,90,0,0,0,0,22,0,0
-2,2026-07-12,Charlotte FC,Inter Miami,D,Patrick Agyemang,FW,90,0,0,1,0,20,1,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Kristijan Kahlina,GK,90,0,0,0,7,21,0,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Adilson Malanda,DF,90,1,1,2,0,57,2,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Andrew Privett,DF,90,0,0,1,0,42,1,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Nathan Byrne,DF,90,0,0,3,0,43,2,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Tim Ream,DF,90,0,0,5,0,51,2,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Ashley Westwood,MF,90,0,0,1,0,43,2,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Brandt Bronico,MF,70,0,0,0,0,43,2,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Pep Biel,MF,90,0,0,4,0,50,0,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Idan Toklomati,MF,65,0,0,0,0,44,2,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Wilfried Zaha,FW,90,2,1,2,0,22,4,0
-3,2026-07-19,Charlotte FC,NYCFC,W,Patrick Agyemang,FW,90,0,1,1,0,33,2,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Matt Freese,GK,90,0,0,0,6,23,0,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Tayvon Gray,DF,90,0,0,6,0,50,1,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Maxime Chanot,DF,90,0,0,1,0,30,1,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Thiago Martins,DF,90,0,0,1,0,32,2,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Alex Callens,DF,90,0,0,3,0,58,0,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Keaton Parks,MF,90,0,0,1,0,68,2,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Santiago Rodriguez,MF,90,0,0,4,0,40,2,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Andres Jasson,MF,90,0,0,0,0,48,1,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Julian Fernandez,MF,80,0,0,1,0,57,1,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Talles Magno,FW,90,0,0,0,0,35,1,0
-3,2026-07-19,NYCFC,Charlotte FC,L,Hannes Wolf,FW,90,0,0,0,0,17,2,0
+match_id,match_date,team,opponent,venue,result,player_name,position,minutes_played,goals,assists,tackles_won,saves,passes_completed,shots_on_target,yellow_cards
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Kristijan Kahlina,GK,60,0,0,0,6,29,0,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Adilson Malanda,DF,75,1,0,1,0,30,1,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Andrew Privett,DF,90,0,0,1,0,47,0,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Nathan Byrne,DF,90,0,1,4,0,37,1,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Tim Ream,DF,90,0,0,1,0,54,0,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Ashley Westwood,MF,90,0,0,1,0,53,1,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Brandt Bronico,MF,90,0,0,2,0,62,2,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Pep Biel,MF,75,1,0,4,0,47,2,1
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Idan Toklomati,MF,90,0,0,4,0,63,2,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Wilfried Zaha,FW,65,0,0,1,0,17,0,0
+1,2026-07-05,Charlotte FC,Atlanta United,Home,W,Patrick Agyemang,FW,90,0,0,1,0,35,1,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Brad Guzan,GK,90,0,0,0,6,28,0,1
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Brooks Lennon,DF,90,0,0,5,0,53,0,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Derrick Williams,DF,90,0,0,6,0,52,2,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Stian Gregersen,DF,90,0,0,1,0,37,0,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Julian Gressel,DF,90,1,0,1,0,36,3,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Bartosz Slisz,MF,90,0,0,3,0,65,2,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Amar Sejdic,MF,90,0,0,1,0,75,2,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Emerson Hyndman,MF,90,0,0,4,0,65,1,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Saba Lobjanidze,MF,90,0,0,4,0,71,0,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Xande Silva,FW,90,0,0,0,0,35,0,0
+1,2026-07-05,Atlanta United,Charlotte FC,Away,L,Giorgos Giakoumakis,FW,90,0,0,0,0,27,1,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Drake Callender,GK,90,0,0,0,7,18,0,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,DeAndre Yedlin,DF,80,0,0,3,0,54,2,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Ian Fray,DF,90,0,0,2,0,44,0,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Jordi Alba,DF,90,0,0,3,0,46,0,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Noah Allen,DF,70,0,0,6,0,46,2,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Federico Redondo,MF,90,1,0,1,0,74,3,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Yannick Bright,MF,90,0,0,3,0,41,0,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Diego Gomez,MF,90,0,0,2,0,55,0,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Julian Carranza,MF,90,0,0,0,0,45,2,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Leonardo Campana,FW,80,0,0,0,0,19,2,0
+2,2026-07-12,Inter Miami,Charlotte FC,Home,D,Luis Suarez,FW,90,0,0,1,0,31,2,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Kristijan Kahlina,GK,90,0,0,0,6,28,0,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Adilson Malanda,DF,90,0,0,4,0,33,0,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Andrew Privett,DF,90,0,0,5,0,47,0,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Nathan Byrne,DF,60,1,0,2,0,32,1,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Tim Ream,DF,65,0,0,3,0,51,1,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Ashley Westwood,MF,80,0,0,4,0,70,0,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Brandt Bronico,MF,90,0,0,1,0,46,0,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Pep Biel,MF,90,0,0,3,0,69,2,1
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Idan Toklomati,MF,90,0,1,0,0,43,1,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Wilfried Zaha,FW,90,0,0,0,0,22,0,0
+2,2026-07-12,Charlotte FC,Inter Miami,Away,D,Patrick Agyemang,FW,90,0,0,1,0,20,1,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Kristijan Kahlina,GK,90,0,0,0,7,21,0,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Adilson Malanda,DF,90,1,1,2,0,57,2,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Andrew Privett,DF,90,0,0,1,0,42,1,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Nathan Byrne,DF,90,0,0,3,0,43,2,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Tim Ream,DF,90,0,0,5,0,51,2,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Ashley Westwood,MF,90,0,0,1,0,43,2,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Brandt Bronico,MF,70,0,0,0,0,43,2,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Pep Biel,MF,90,0,0,4,0,50,0,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Idan Toklomati,MF,65,0,0,0,0,44,2,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Wilfried Zaha,FW,90,2,1,2,0,22,4,0
+3,2026-07-19,Charlotte FC,NYCFC,Home,W,Patrick Agyemang,FW,90,0,1,1,0,33,2,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Matt Freese,GK,90,0,0,0,6,23,0,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Tayvon Gray,DF,90,0,0,6,0,50,1,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Maxime Chanot,DF,90,0,0,1,0,30,1,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Thiago Martins,DF,90,0,0,1,0,32,2,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Alex Callens,DF,90,0,0,3,0,58,0,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Keaton Parks,MF,90,0,0,1,0,68,2,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Santiago Rodriguez,MF,90,0,0,4,0,40,2,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Andres Jasson,MF,90,0,0,0,0,48,1,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Julian Fernandez,MF,80,0,0,1,0,57,1,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Talles Magno,FW,90,0,0,0,0,35,1,0
+3,2026-07-19,NYCFC,Charlotte FC,Away,L,Hannes Wolf,FW,90,0,0,0,0,17,2,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Patrick Schulte,GK,90,0,0,0,5,29,0,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Rudy Camacho,DF,60,1,0,6,0,58,1,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Malte Amundsen,DF,90,0,0,5,0,47,0,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Yevhen Cheberko,DF,70,1,1,1,0,58,2,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Will Sands,DF,90,0,0,1,0,41,2,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Diego Rossi,MF,90,0,0,4,0,49,0,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Darlington Nagbe,MF,90,0,0,1,0,66,0,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Aidan Morris,MF,90,0,1,3,0,55,1,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Max Arfsten,MF,90,0,0,3,0,42,1,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Cucho Hernandez,FW,90,0,0,1,0,26,1,0
+4,2026-07-26,Columbus Crew,Charlotte FC,Home,D,Christian Ramirez,FW,90,0,0,0,0,15,2,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Kristijan Kahlina,GK,90,0,0,0,6,26,0,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Adilson Malanda,DF,70,0,0,2,0,48,1,1
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Andrew Privett,DF,90,0,0,3,0,53,1,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Nathan Byrne,DF,90,0,0,1,0,42,2,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Tim Ream,DF,75,1,1,1,0,46,3,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Ashley Westwood,MF,90,0,0,1,0,63,1,1
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Brandt Bronico,MF,90,0,0,2,0,60,2,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Pep Biel,MF,90,0,0,2,0,72,1,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Idan Toklomati,MF,90,0,0,2,0,75,0,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Wilfried Zaha,FW,90,1,0,1,0,20,3,0
+4,2026-07-26,Charlotte FC,Columbus Crew,Away,D,Patrick Agyemang,FW,90,0,0,0,0,24,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Kristijan Kahlina,GK,90,0,0,0,4,28,0,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Adilson Malanda,DF,90,0,0,6,0,35,2,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Andrew Privett,DF,90,0,0,6,0,49,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Nathan Byrne,DF,90,0,0,2,0,51,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Tim Ream,DF,90,0,0,1,0,31,0,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Ashley Westwood,MF,90,0,0,0,0,69,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Brandt Bronico,MF,90,0,0,3,0,71,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Pep Biel,MF,90,0,0,0,0,46,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Idan Toklomati,MF,90,1,0,4,0,69,1,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Wilfried Zaha,FW,90,0,0,0,0,29,0,0
+5,2026-08-02,Charlotte FC,Orlando City,Home,W,Patrick Agyemang,FW,90,0,0,2,0,34,1,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Pedro Gallese,GK,90,0,0,0,6,26,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Kyle Smith,DF,90,0,0,4,0,58,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Robin Jansson,DF,90,0,0,3,0,54,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,David Brekalo,DF,90,0,0,5,0,45,2,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Rafael Santos,DF,90,0,0,6,0,39,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Cesar Araujo,MF,90,0,0,4,0,45,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Wilder Cartagena,MF,90,0,0,1,0,53,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Martin Ojeda,MF,90,0,0,3,0,66,0,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Facundo Torres,MF,90,0,0,4,0,41,2,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Duncan McGuire,FW,70,0,0,1,0,27,1,0
+5,2026-08-02,Orlando City,Charlotte FC,Away,L,Ramiro Enrique,FW,90,0,0,2,0,22,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Brad Guzan,GK,90,0,0,0,4,23,0,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Brooks Lennon,DF,90,0,0,6,0,35,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Derrick Williams,DF,90,0,0,5,0,30,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Stian Gregersen,DF,90,0,0,1,0,50,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Julian Gressel,DF,90,0,0,1,0,38,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Bartosz Slisz,MF,90,0,0,2,0,64,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Amar Sejdic,MF,90,0,0,2,0,45,1,1
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Emerson Hyndman,MF,90,0,0,2,0,54,2,1
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Saba Lobjanidze,MF,90,0,0,0,0,41,0,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Xande Silva,FW,65,0,0,0,0,19,1,0
+6,2026-08-09,Atlanta United,Charlotte FC,Home,L,Giorgos Giakoumakis,FW,90,0,0,0,0,29,2,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Kristijan Kahlina,GK,90,0,0,0,3,19,0,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Adilson Malanda,DF,90,0,0,5,0,51,1,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Andrew Privett,DF,90,0,0,1,0,48,2,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Nathan Byrne,DF,90,0,0,6,0,54,1,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Tim Ream,DF,90,1,0,1,0,55,3,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Ashley Westwood,MF,90,0,0,3,0,63,0,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Brandt Bronico,MF,90,0,0,3,0,71,0,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Pep Biel,MF,90,0,0,3,0,49,1,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Idan Toklomati,MF,90,0,1,2,0,74,1,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Wilfried Zaha,FW,90,0,0,2,0,23,1,0
+6,2026-08-09,Charlotte FC,Atlanta United,Away,W,Patrick Agyemang,FW,90,0,0,0,0,23,1,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Kristijan Kahlina,GK,90,0,0,0,3,20,0,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Adilson Malanda,DF,90,0,0,3,0,40,1,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Andrew Privett,DF,90,0,0,3,0,47,0,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Nathan Byrne,DF,90,0,0,2,0,53,1,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Tim Ream,DF,90,0,1,6,0,45,2,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Ashley Westwood,MF,90,1,0,0,0,45,2,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Brandt Bronico,MF,90,0,0,2,0,63,1,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Pep Biel,MF,90,1,0,4,0,61,2,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Idan Toklomati,MF,90,0,0,2,0,54,0,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Wilfried Zaha,FW,90,0,0,2,0,32,2,0
+7,2026-08-16,Charlotte FC,Inter Miami,Home,L,Patrick Agyemang,FW,90,0,0,1,0,23,2,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Drake Callender,GK,90,0,0,0,2,22,0,1
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,DeAndre Yedlin,DF,70,0,0,6,0,60,0,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Ian Fray,DF,90,0,0,1,0,57,0,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Jordi Alba,DF,90,0,1,4,0,40,0,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Noah Allen,DF,90,0,2,4,0,33,0,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Federico Redondo,MF,60,0,0,1,0,49,2,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Yannick Bright,MF,65,1,0,0,0,75,2,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Diego Gomez,MF,90,0,0,1,0,73,1,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Julian Carranza,MF,90,1,0,4,0,67,2,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Leonardo Campana,FW,60,0,0,0,0,35,0,0
+7,2026-08-16,Inter Miami,Charlotte FC,Away,W,Luis Suarez,FW,65,1,0,0,0,32,1,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Matt Freese,GK,90,0,0,0,2,22,0,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Tayvon Gray,DF,90,0,0,4,0,32,2,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Maxime Chanot,DF,90,0,0,6,0,48,2,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Thiago Martins,DF,90,0,0,1,0,47,0,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Alex Callens,DF,90,0,0,2,0,32,0,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Keaton Parks,MF,90,1,0,4,0,58,2,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Santiago Rodriguez,MF,90,0,0,3,0,57,2,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Andres Jasson,MF,90,0,0,4,0,42,1,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Julian Fernandez,MF,90,0,0,0,0,45,0,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Talles Magno,FW,90,0,0,2,0,33,0,0
+8,2026-08-23,NYCFC,Charlotte FC,Home,D,Hannes Wolf,FW,90,0,0,1,0,33,0,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Kristijan Kahlina,GK,90,0,0,0,2,27,0,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Adilson Malanda,DF,90,0,0,1,0,45,1,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Andrew Privett,DF,90,1,0,1,0,57,1,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Nathan Byrne,DF,90,0,0,3,0,51,1,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Tim Ream,DF,90,0,0,4,0,32,1,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Ashley Westwood,MF,75,0,0,4,0,40,2,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Brandt Bronico,MF,90,0,0,0,0,52,2,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Pep Biel,MF,90,0,0,3,0,43,0,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Idan Toklomati,MF,70,0,0,3,0,71,0,1
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Wilfried Zaha,FW,90,0,0,0,0,20,1,0
+8,2026-08-23,Charlotte FC,NYCFC,Away,D,Patrick Agyemang,FW,90,0,0,0,0,22,0,0
